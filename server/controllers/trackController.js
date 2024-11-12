@@ -22,7 +22,7 @@ const getTracksByArtist = async (req, res) => {
       type: sequelize.QueryTypes.SELECT,
     });
 
-    res.json(tracks); // Return the result array directly without destructuring
+    res.status(200).json(tracks); // Return the result array directly without destructuring
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

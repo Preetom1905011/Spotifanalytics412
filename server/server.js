@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/database');
 const trackRoutes = require('./routes/tracks');
+const artistRoutes = require('./routes/artists');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,10 +14,7 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "it's working" });
 });
 app.use('/api', trackRoutes);
-
-// sequelize.sync().then(() => {
-//   console.log('Database connected!');
-// }).catch(error => console.error('Error connecting to the database:', error));
+app.use('/api', artistRoutes);
 
 // Test database connection
 sequelize.authenticate().then(() => {
