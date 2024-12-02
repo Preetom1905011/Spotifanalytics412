@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getTracksByArtist } = require('../controllers/trackController');
+const { getTracksByArtists } = require('../controllers/trackController');
 
-router.get('/tracks', getTracksByArtist);
+router.get('/tracks', getTracksByArtists);
 
 module.exports = router;
