@@ -1,0 +1,15 @@
+$bg-color: rgb(212, 240, 170);
+
+body {
+    background-color: $bg-color;
+}
+
+.header-banner {
+    // width: 100%;
+    font-size: 2rem;
+    height: 3rem;
+    padding: 2rem 2rem 1rem 2rem;
+    background-color: green;
+    margin: -1rem;
+    color: white;
+}
