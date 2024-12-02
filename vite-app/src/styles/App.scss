@@ -2,6 +2,7 @@ $bg-color: rgb(212, 240, 170);
 
 body {
     background-color: $bg-color;
+    overflow-x: hidden;
 }
 
 .header-banner {
@@ -12,4 +13,25 @@ body {
     background-color: green;
     margin: -1rem;
     color: white;
+}
+
+.selectTab {
+    background-color: rgb(233, 255, 201);
+    height: 40rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.graphTab {
+    background-color: antiquewhite;
+    height: 40rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    column-gap: 1rem;
+    margin-top: 2rem;
 }
