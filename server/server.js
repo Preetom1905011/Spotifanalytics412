@@ -4,6 +4,7 @@ const cors = require('cors');
 const sequelize = require('./config/database');
 const trackRoutes = require('./routes/tracks');
 const artistRoutes = require('./routes/artists');
+const albumRoutes = require('./routes/albums');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,8 +15,9 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "it's working" });
 });
 app.use('/api', trackRoutes);
+app.use('/api', albumRoutes);
 app.use('/api', artistRoutes);
-
+https://localhost:5000/api/
 // Test database connection
 sequelize.authenticate().then(() => {
     console.log('Connection to the PostgreSQL database has been established successfully.');
