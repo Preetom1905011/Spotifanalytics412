@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 app.use('/api', trackRoutes);
 app.use('/api', albumRoutes);
 app.use('/api', artistRoutes);
-https://localhost:5000/api/
+
 // Test database connection
 sequelize.authenticate().then(() => {
     console.log('Connection to the PostgreSQL database has been established successfully.');
