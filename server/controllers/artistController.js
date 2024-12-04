@@ -16,22 +16,21 @@ const getArtistsByGenres = async (req, res) => {
     const artists = await sequelize.query(
       `
       SELECT DISTINCT
-        P_NAME, AR_POPULARITY
+        P_NAME, AR_POPULARITY, AR_GENRE
       FROM 
         PERSON
       JOIN 
         ARTIST ON PERSON.P_ID = ARTIST.AR_ID
       WHERE 
-        ARTIST.AR_GENRE @> ARRAY[:...genreList]
+        ARTIST.AR_GENRE @> :genreList
       ORDER BY AR_POPULARITY ${validOrder}
       LIMIT :limit;
       `,
       {
-        replacements: { genreList, limit: parseInt(limit, 10) },
+        replacements: { genreList: `{${genreList.join(',')}}`, limit: parseInt(limit, 10) },
         type: sequelize.QueryTypes.SELECT,
       }
     );
-
     res.status(200).json(artists);
   } catch (error) {
     res.status(500).json({ message: error.message });
