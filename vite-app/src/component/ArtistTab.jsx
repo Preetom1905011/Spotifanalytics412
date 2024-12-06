@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
+import axios from 'axios';
 
 
 function ArtistTab({ selectedGenre, handleGenreChange, order, setOrder, limit, setLimit }) {
   
-  // axios request here
-  const genreOptions = [
-    { value: 'pop', label: 'Pop' },
-    { value: 'kpop', label: 'K-pop' },
-    { value: 'jpop', label: 'J-pop' },
-  ];
 
   const limitOptions = [
     { value: 10, label: '10' },
@@ -18,6 +13,30 @@ function ArtistTab({ selectedGenre, handleGenreChange, order, setOrder, limit, s
     { value: 40, label: '40' },
     { value: 50, label: '50' },
   ];
+
+  
+  const [genreOptions, setGenreOptions] = useState([]);
+  // axios request here
+  useEffect(() => {
+    const fetchAllGenres = async () => {
+      try {
+        // Make the Axios GET request
+        const response = await axios.get("http://localhost:5000/api/genres");
+
+        // Handle response
+        const res = response.data.flat().map(artist => ({
+          value: artist.genre, // Assuming each artist object has a 'name' property
+          label: artist.genre, // Use the same property for the label
+        }));
+    
+        setGenreOptions(res);
+      } catch (error) {
+        console.error("Error fetching tracks:", error.message);
+        throw error;
+      }
+    };
+    fetchAllGenres();
+  }, [])
 
 
   const handleRadioChange = (event) => {

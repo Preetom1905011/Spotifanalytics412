@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
+import axios from 'axios';
 
 export default function AlbumTab({
   selectedArtists,
@@ -14,13 +15,28 @@ export default function AlbumTab({
   setEndDate,
 }) {
 
-
-  // axios request here
-  const artistOptions = [
-    { value: 'Post Malone', label: 'Post Malone' },
-    { value: 'Talyor Swift', label: 'Talyor Swift' },
-    { value: 'Lauv', label: 'Lauv' },
-  ];
+    const [artistOptions, setArtistOptions] = useState([]);
+    // axios request here
+    useEffect(() => {
+      const fetchAllArtists = async () => {
+        try {
+          // Make the Axios GET request
+          const response = await axios.get("http://localhost:5000/api/artists");
+  
+          // Handle response
+          const res = response.data.flat().map(artist => ({
+            value: artist.p_name, // Assuming each artist object has a 'name' property
+            label: artist.p_name, // Use the same property for the label
+          }));
+      
+          setArtistOptions(res);
+        } catch (error) {
+          console.error("Error fetching tracks:", error.message);
+          throw error;
+        }
+      };
+      fetchAllArtists();
+    }, [])
 
   
   const handleRadioChange = (event) => {
@@ -44,7 +60,7 @@ export default function AlbumTab({
       </div>
 
       {/* Radio Buttons */}
-      <div style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
+      {/* <div style={{paddingTop: '1rem', paddingBottom: '1rem'}}>
         <label style={{paddingRight: '1rem'}}>
           <input
             type="radio"
@@ -63,7 +79,7 @@ export default function AlbumTab({
           />
           Least Popular
         </label>
-      </div>
+      </div> */}
 
       <h3>Select Date Range</h3>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
