@@ -91,18 +91,6 @@ function SongsTab({ selectedArtists, handleArtistChange, order, setOrder, limit,
         />
       </div>
 
-      {/* Display Selected Preferences */}
-      <div>
-        <h3>Selected Preferences:</h3>
-        <p>Popularity: {order === 'most' ? 'Most Popularity' : 'Least Popularity'}</p>
-        <p>Selected Artists:</p>
-        {selectedArtists.length > 0 ? (
-          selectedArtists.map((option) => <div key={option.value}>{option.label}</div>)
-        ) : (
-          <p>No Artists selected.</p>
-        )}
-        <p>Limit: {limit}</p>
-      </div>
     </div>
 
   );

@@ -93,19 +93,6 @@ function ArtistTab({ selectedGenre, handleGenreChange, order, setOrder, limit, s
           value={limitOptions.find((option) => option.value === limit)}
         />
       </div>
-
-      {/* Display Selected Preferences */}
-      <div>
-        <h3>Selected Preferences:</h3>
-        <p>Popularity: {order === 'most' ? 'Most Popularity' : 'Least Popularity'}</p>
-        <p>Selected Genres:</p>
-        {selectedGenre.length > 0 ? (
-          selectedGenre.map((option) => <div key={option.value}>{option.label}</div>)
-        ) : (
-          <p>No Genres selected.</p>
-        )}
-        <p>Limit: {limit}</p>
-      </div>
     </div>
 
   );

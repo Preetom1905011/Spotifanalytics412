@@ -13,13 +13,12 @@ const mainOptions = [
   { value: "albums", label: "Albums" },
 ];
 
-function SelectTab() {
+function SelectTab({result, setResult, setPlotVar}) {
   const [selectedMain, setSelectedMain] = useState(null);
   const [selectedArtists, setSelectedArtists] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [result, setResult] = useState(null);
 
   const [order, setOrder] = useState("most"); // Default to "Most Popular"
   const [limit, setLimit] = useState(10); // Default limit to 10
@@ -27,8 +26,10 @@ function SelectTab() {
   const handleMainChange = (selectedOption) => {
     setSelectedMain(selectedOption);
     setSelectedArtists([]);
+    setSelectedGenre([]);
     setStartDate(null);
     setEndDate(null);
+    setPlotVar(selectedOption);
   };
 
   const handleArtistChange = (selectedOptions) => {
