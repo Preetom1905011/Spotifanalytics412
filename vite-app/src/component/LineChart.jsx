@@ -174,7 +174,9 @@ const LineChart = ({ result, plotVar }) => {
     },
     scales: {
       x: {
-        type: title === "Songs" ? "linear" : "category", // Conditional scale type
+        type: title === "Songs"
+        ? "linear"
+        : "category", // Conditional scale type
         position: 'bottom',
         ticks: {
           stepSize: title === "Songs" ? 1 : undefined, // Use stepSize only for numerical scales
